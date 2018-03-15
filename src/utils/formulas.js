@@ -29,7 +29,7 @@ export const getCanvasPosition = (event) => {
 
     // https://stackoverflow.com/a/10298843/1232793
 
-    const svg = document.getElementById('aliens-go-home-canvas');
+    const svg = document.getElementById('react-game-canvas');
     const point = svg.createSVGPoint();
 
     point.x = event.clientX;
