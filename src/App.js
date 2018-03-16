@@ -15,6 +15,12 @@ Auth0.configure({
 });
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.shoot = this.shoot.bind(this);
+    }
+
     componentDidMount() {
         Auth0.handleAuthCallback();
         Auth0.subscribe((auth) => {
@@ -81,6 +87,10 @@ class App extends Component {
         this.canvasMousePosition = getCanvasPosition(event);
     }
 
+    shoot() {
+        this.props.shoot(this.canvasMousePosition);
+    }
+
     render() {
         return (
             <Canvas
@@ -90,6 +100,7 @@ class App extends Component {
                 players={this.props.players}
                 startGame={this.props.startGame}
                 trackMouse={event => (this.trackMouse(event))}
+                shoot={this.shoot}
             />
         );
     }
@@ -125,6 +136,7 @@ App.propTypes = {
         name: PropTypes.string.isRequired,
         picture: PropTypes.string.isRequired,
     })),
+    shoot: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {
